@@ -21,6 +21,25 @@ app.get('/materias', (req,  res)=>{
     res.json([{nombre:"Matemática"}, {nombre:"Lengua"}]);
 })
 
+let personas = [{"nombre": "hola", "apellido": "chau"}];
+let persona = {};
+app.post('/agregar', (req,  res)=>{
+    let persona = req.body;
+    personas.push(persona);
+    res.send(personas);
+})
+app.get('/mostrarPersonas',(req, res)=>{
+    res.json(personas);
+})
+app.delete('/borrarPersona:indice', (req, res)=>{
+    const indice = req.params.indice;
+    if (personas[indice])
+    {
+        personas.splice(indice,1);
+    }
+    res.json(personas);
+})
+
 app.listen(port,()=>{
     console.log("Iniciado");
 })
