@@ -21,7 +21,7 @@ app.get('/materias', (req,  res)=>{
     res.json([{nombre:"Matemática"}, {nombre:"Lengua"}]);
 })
 
-let personas = [{"nombre": "hola", "apellido": "chau"}];
+let personas = [];
 let persona = {};
 app.post('/agregar', (req,  res)=>{
     let persona = req.body;
@@ -36,9 +36,11 @@ app.delete('/borrarPersona/:indice', (req, res)=>{
     if (personas[indice])
     {
         personas.splice(indice,1);
-        res.json(personas);
+        return res.status(201).json(personas);
     }
-    else return res.status(404).json({ error: 'Índice no válido' });
+    else {
+        return res.status(404).send(`<img src="https://http.cat/images/404.jpg">`);
+    }
 })
 
 app.listen(port,()=>{
