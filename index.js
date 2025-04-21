@@ -31,13 +31,14 @@ app.post('/agregar', (req,  res)=>{
 app.get('/mostrarPersonas',(req, res)=>{
     res.json(personas);
 })
-app.delete('/borrarPersona:indice', (req, res)=>{
-    const indice = req.params.indice;
+app.delete('/borrarPersona/:indice', (req, res)=>{
+    const indice = parseInt(req.params.indice);
     if (personas[indice])
     {
         personas.splice(indice,1);
+        res.json(personas);
     }
-    res.json(personas);
+    else return res.status(404).json({ error: 'Índice no válido' });
 })
 
 app.listen(port,()=>{
