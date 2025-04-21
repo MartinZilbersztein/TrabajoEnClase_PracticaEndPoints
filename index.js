@@ -36,7 +36,7 @@ app.delete('/borrarPersona/:indice', (req, res)=>{
     if (personas[indice])
     {
         personas.splice(indice,1);
-        return res.status(201).json(personas);
+        return res.status(200).send(`<img src="https://http.cat/images/200.jpg">`);
     }
     else {
         return res.status(404).send(`<img src="https://http.cat/images/404.jpg">`);
